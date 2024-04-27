@@ -2,6 +2,14 @@ int longestCommonSubsequence(char* text1, char* text2) {
     int i,j;
     int len_x = strlen(text1);
     int len_y = strlen(text2);
+    if (len_x > len_y) {
+        char* temp = text1;
+        text1 = text2;
+        text2 = temp;
+        int temp_len = len_x;
+        len_x = len_y;
+        len_y = temp_len;
+    }
     int** LCS = (int**)malloc((len_x + 1) * sizeof(int*));
     for (int i = 0; i <= len_x; i++) {
         LCS[i] = (int*)malloc((len_y + 1) * sizeof(int));
