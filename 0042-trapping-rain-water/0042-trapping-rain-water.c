@@ -27,5 +27,8 @@ int trap(int* height, int heightSize) {
     for (int i = 0; i < heightSize; i++) {
         total += result[i];
     }
+    free(max_left);
+    free(max_right);
+    free(result);
     return total;
 }
