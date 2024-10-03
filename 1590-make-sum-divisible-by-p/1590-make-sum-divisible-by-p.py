@@ -2,7 +2,7 @@ class Solution:
     def minSubarray(self, nums: List[int], p: int) -> int:
         rem = sum(nums) % p
         prefixsum = 0
-        prefixmod = {0: -1}
+        mapp = {0: -1}
         n = len(nums)
 
         if rem == 0:
@@ -12,12 +12,12 @@ class Solution:
 
         for i in range(n):
             prefixsum += nums[i]
-            curmod = prefixsum % p
-            target = (curmod - rem + p) % p
+            ptr = prefixsum % p
+            target = (ptr - rem + p) % p
             
-            if target in prefixmod:
-                min_length = min(min_length, i - prefixmod[target])
+            if target in mapp:
+                min_length = min(min_length, i - mapp[target])
                 
-            prefixmod[curmod] = i
+            mapp[ptr] = i
 
         return min_length if min_length < n else -1
